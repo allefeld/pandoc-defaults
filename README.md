@@ -1,21 +1,11 @@
 # ![](icon.svg) Pandoc/Defaults repository
 
-This repository is about a way to include instructions on how to process a Markdown file with Pandoc within the Markdown file itself:
+This repository is about a way to reference instructions on how to process a Markdown file with Pandoc within the Markdown file itself, using an entry in the YAML header:
 
-````
----
-title: Pandoc/Defaults
-author: Carsten Allefeld
+````yaml
 pandoc-defaults_:
-    - html:
-    - pdf: pdf_document
-...
-
-# Motivation
-
-Pandoc is an extremely versatile tool for document conversion, centered on
-its own feature-rich version of Markdown which makes it possible to write
-complex documents. ...
+    - pdf: slides_beamer
+    - pptx: slides_powerpoint
 ````
 
 It includes:

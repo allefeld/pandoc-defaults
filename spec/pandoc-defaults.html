@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Carsten Allefeld" />
+  <title>Pandoc/Defaults</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Pandoc/Defaults</h1>
+<p class="author">Carsten Allefeld</p>
+<p class="date">2022–1–12</p>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#background"><span class="toc-section-number">1</span> Background</a></li>
+<li><a href="#specification"><span class="toc-section-number">2</span> Specification</a></li>
+<li><a href="#design-principles"><span class="toc-section-number">3</span> Design principles</a></li>
+</ul>
+</nav>
+<p>This document describes a way to define “formats” (Pandoc processing instructions) and associate Markdown files with them, and specifies the behavior of a program which processes such files.</p>
+<h1 data-number="1" id="background"><span class="header-section-number">1</span> Background</h1>
+<h2 data-number="1.1" id="motivation"><span class="header-section-number">1.1</span> Motivation</h2>
+<p><a href="https://pandoc.org/">Pandoc</a> is an extremely versatile tool for document conversion, centered on its own feature-rich version of Markdown which makes it possible to write complex documents. There are many purposes Pandoc can be used for, and a large number of command line options allow to tailor Pandoc’s functions to these special uses.</p>
+<p>For many people, Pandoc has become an integral part of their daily routine, much like Microsoft Word and PowerPoint are used by others. In this context, there are typically a small number of use cases which repeat over and over again, and specifying command line options for them manually is tedious and error-prone. Such use cases might be:</p>
+<ul>
+<li>create a slide presentation (with specific color scheme and logo),</li>
+<li>write a technical report,</li>
+<li>write a letter (with a specific letterhead),</li>
+<li>prepare an academic publication,</li>
+<li>or to simply collect some notes on a project.</li>
+</ul>
+<p>In the following I will call the specific configuration for a repeated use case a “format”.</p>
+<p>There have been a number of attempts to wrap Pandoc in a way that makes it easy to store and re-use such formats:</p>
+<ul>
+<li><a href="https://github.com/msprev/panzer">panzer</a>, which “adds <em>styles</em> to pandoc”, <!-- 2013–11–14 --></li>
+<li><a href="https://github.com/rstudio/rmarkdown">rmarkdown</a>, an R package which binds together knitr processing of Markdown-with-code with a number of output formats defined in R, <!-- 2014–1–22 --></li>
+<li><a href="https://github.com/htdebeer/pandocomatic">pandocomatic</a>, with which “you can express common patterns of using pandoc for generating your documents”, <!-- 2014–3–31 --></li>
+<li><a href="https://github.com/mb21/panrun">panrun</a>, a “minimal script that runs pandoc with the options it finds in the YAML metadata of the input markdown file”, <!-- 2018–9–16 --></li>
+<li><a href="https://github.com/allefeld/atom-pandoc-pdf">Pandoc/PDF</a>, a package for the Atom editor which allows to associate file extensions with Pandoc options, <!-- 2020–1–1 --></li>
+<li>and probably several others.</li>
+</ul>
+<p>The problem is that there is no common standard for defining such formats, and for associating them with a Markdown file. (Yes, I am aware of <a href="https://xkcd.com/927/">the “Standards” xkcd</a>, but see next section.) Moreover, the route taken by some of these packages, to specify options in detail within the file, goes against the idea of resuable formats, and tends to reproduce the abominably endless preambles of LaTeX files as well as the variety of slightly differently formatted Word documents.</p>
+<h2 data-number="1.2" id="pandocs-defaults-files-as-formats"><span class="header-section-number">1.2</span> Pandoc’s defaults files as formats</h2>
+<p>Since version 2.8 (and reasonably bug-free since 2.9.1), Pandoc supports a command line argument <code>--defaults</code> with which a so-called <a href="https://pandoc.org/MANUAL.html#default-files">“defaults file”</a> is specified. This file is in YAML format and makes it possible to configure all aspects of the Pandoc conversion process in a single file. With this, there is now a “common standard” for defining formats endorsed by the creator of Pandoc himself.</p>
+<p>With this option, running Pandoc in a customized way becomes as simple as e.g.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pandoc</span> <span class="at">--defaults</span><span class="op">=</span>slides_beamer.yaml slides.md <span class="dt">\</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">--output</span><span class="op">=</span>slides.pdf</span></code></pre></div>
+<p>where <code>slides_beamer.yaml</code> is a defaults file which specifies in detail how the input document is to be converted to PDF slides (here via LaTeX using the Beamer document class). Having another defaults file <code>slides_powerpoint.yaml</code>, the same input file could be converted into a PowerPoint <code>pptx</code>-file by:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pandoc</span> <span class="at">--defaults</span><span class="op">=</span>slides_powerpoint.yaml slides.md <span class="dt">\</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">--output</span><span class="op">=</span>slides.pptx</span></code></pre></div>
+<p>This opens up the possibility to create a simple user interface to Pandoc supporting different kinds of documents and styles. The user creates one or more defaults files, and for a given conversion only has to specify two pieces of information:</p>
+<ul>
+<li>the name of the defaults file</li>
+<li>and the file extension of the output.</li>
+</ul>
+<p>Note that in the first example above, the extension <code>pdf</code> of the output file was necessary to trigger the creation of a PDF. Any other extension would have let the Beamer-LaTeX code to be written to the file, which means only the extensions <code>pdf</code> and <code>tex</code> make sense in combination with this defaults file. In the second example, only the extension <code>pptx</code> makes sense.</p>
+<p>For the use cases listed above, defaults files could be:</p>
+<ul>
+<li><code>slides_beamer.yaml</code>, <code>slides_powerpoint.yaml</code></li>
+<li><code>report_html.yaml</code>, <code>report_word.yaml</code></li>
+<li><code>letter_word.yaml</code></li>
+<li><code>paper_latex.yaml</code></li>
+<li><code>notes_html.yaml</code></li>
+</ul>
+<h2 data-number="1.3" id="associating-a-markdown-file-with-formats"><span class="header-section-number">1.3</span> Associating a Markdown file with formats</h2>
+<p>What is missing is a simple way to specify these two pieces of information, apart from writing them on the command line. This is especially important if the conversion process is to be started from an editor, where specifying options is cumbersome or requires complex configuration options.</p>
+<p>There are several possible strategies, but the simplest seems to be to add a key to the initial YAML block of a Markdown file, within which output file extensions and defaults files are associated:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pandoc-defaults_</span><span class="kw">:</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">pdf</span><span class="kw">:</span><span class="at"> slides_beamer</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">pptx</span><span class="kw">:</span><span class="at"> slides_powerpoint</span></span></code></pre></div>
+<h1 data-number="2" id="specification"><span class="header-section-number">2</span> Specification</h1>
+<p>A Pandoc/Defaults processor is a command-line program or a function within an editor program, e.g. triggered by a keyboard shortcut.</p>
+<p>If it is invoked upon a Markdown file <code>NAME.EXT</code> with an initial YAML block which includes the top-level key <code>pandoc-defaults_</code>, it expects the associated value to be a sequence of single-key mappings, where keys and values are string scalars. Keys have to be unique within the sequence. Keys are interpreted as output file extensions and values as names of Pandoc defaults files (without the extension <code>.yaml</code>):</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="at">…</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">pandoc-defaults_</span><span class="kw">:</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">EXT1</span><span class="kw">:</span><span class="at"> DEFAULTS1</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">EXT2</span><span class="kw">:</span><span class="at"> DEFAULTS2</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="at">    …</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="at">…</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">...</span></span></code></pre></div>
+<p>It is then to spawn, in the directory containing the file, one Pandoc process for each key/value pair:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pandoc</span> <span class="at">--defaults</span><span class="op">=</span>DEFAULTS1.yaml NAME.EXT <span class="at">--output</span><span class="op">=</span>NAME.EXT1</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pandoc</span> <span class="at">--defaults</span><span class="op">=</span>DEFAULTS2.yaml NAME.EXT <span class="at">--output</span><span class="op">=</span>NAME.EXT2</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">…</span></span></code></pre></div>
+<p>As a result, files with the specified extensions are created in the same directory as the Markdown file, each using the format defined by the associated defaults file. Additional Pandoc arguments may be included, as long as they do not substantially affect the result, e.g. <code>--verbose</code>.</p>
+<p>To simplify the use of <em>default</em> defaults files, if the value for a key is omitted (equivalent to YAML <code>null</code> or <code>~</code>), it is to be set identical to the key. That means the following two entries are equivalent:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pandoc-defaults_</span><span class="kw">:</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">docx</span><span class="kw">:</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pandoc-defaults_</span><span class="kw">:</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">html</span><span class="kw">:</span><span class="at"> html</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">docx</span><span class="kw">:</span><span class="at"> docx</span></span></code></pre></div>
+<p>To accomodate the case of simple one-off Markdown files, either without an initial YAML block or without a top-level key <code>pandoc-defaults_</code>, in this case the Pandoc/Defaults processor is to act as if the document contained the entry</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pandoc-defaults_</span><span class="kw">:</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">html</span><span class="kw">:</span></span></code></pre></div>
+<p>Referencing a defaults file, either explicitly through a value or implicitly by omitting it, assumes that such a file can be found by Pandoc. That means that the defaults file has to be either installed in the <code>defaults</code> subdirectory of the Pandoc <a href="https://pandoc.org/MANUAL.html#option--data-dir">user data directory</a>, or that it has to be present in the directory of the Markdown file.</p>
+<p>If the user wishes to use Pandoc’s built-in settings and templates unchanged, they can use a minimal defaults file. For example, <code>html.yaml</code> could simply contain the lines:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">writer</span><span class="kw">:</span><span class="at"> html5</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">standalone</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code></pre></div>
+<p>The behavior described above is the core functionality expected from a Pandoc/Defaults processor, but it may offer further functions. For example, an editor may</p>
+<ul>
+<li>provide another keyboard shortcut, in response to which only the first key/value pair is used,</li>
+<li>provide a drop-down menu with entries corresponding to the key/value pairs, so that in response to a selection only the selected key/value pair is used, or</li>
+<li>automatically open the file created from the first key/value pair in a viewer application or tab.</li>
+</ul>
+<p>If the file extension suggests preprocessing, a Pandoc/Defaults processor may run the preprocessor before invoking Pandoc on the resulting file; examples are <code>Rmd</code> files to be processed with <a href="https://yihui.org/knitr/">knitr</a> or <code>pmd</code> files to be processed with <a href="https://mpastell.com/pweave/">Pweave</a> on files with the extension <code>pmd</code>.</p>
+<h1 data-number="3" id="design-principles"><span class="header-section-number">3</span> Design principles</h1>
+<ul>
+<li><p>Pandoc/Defaults is designed to rely as much as possible on existing functionality of Pandoc, adding only what cannot be achieved using Pandoc alone.</p></li>
+<li><p>Format information is added to the Markdown file itself in order to avoid complex configuration, e.g. based on file extensions or parts of the file name, or to have directories cluttered with sidecar configuration files. Note however that this system is compatible with using formats defined locally but separately, due to the way Pandoc <a href="https://pandoc.org/MANUAL.html#option--defaults">searches for defaults files</a>.</p></li>
+<li><p>The YAML key under which formats are defined ends in an underscore so that it does not affect processing by Pandoc.</p></li>
+<li><p>Formats are listed in a sequence of single-key mappings (the standard way to <a href="https://yaml.org/type/omap.html">represent an ordered mapping in YAML</a>), because a simple YAML mapping has no defined order; this way it is possible to identify a “first” format.</p></li>
+<li><p>Output file extensions are used as keys because it does not make sense to create more than one file with the same name.</p></li>
+<li><p>Pandoc is to be run in the directory of the input file so that local external resources (images, defaults files) are found.</p></li>
+</ul>
+</body>
+</html>

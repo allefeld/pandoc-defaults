@@ -1,0 +1,22 @@
+reader: markdown+hard_line_breaks
+writer: latex
+toc: true
+toc-depth: 1
+number-sections: true
+pdf-engine: latexmk
+pdf-engine-opt: "-pdfxe"
+variables:
+  classoption: a4paper
+  geometry:
+    - width=14cm
+  fontsize: 12pt
+  mainfont: Noto Sans
+  mainfontoptions:
+    - BoldFont={Noto Sans Medium}
+  monofont: Noto Mono
+  monofontoptions: Scale=0.9
+  hyperrefoptions:
+    - pdfpagemode=UseNone
+  colorlinks: true
+  link-citations: true
+citeproc: true

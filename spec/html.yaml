@@ -1,0 +1,6 @@
+reader: markdown+hard_line_breaks
+writer: html5
+standalone: true
+toc: true
+toc-depth: 1
+number-sections: true
