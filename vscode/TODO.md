@@ -7,3 +7,5 @@
 -   repeat processing on save
 
 -   configuration: `pdExecutable`, also `PD_PANDOC`
+
+-   warn if invoked on document with wrong language?

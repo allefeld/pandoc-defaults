@@ -130,7 +130,7 @@ function showTerminal(): void {
 
 
 export function activate(context: vscode.ExtensionContext): void {
-	console.log(`${extDisplayName}: activate`);
+	console.log(`${extDisplayName}: activate` + icon);
 
 	let disposable;
 

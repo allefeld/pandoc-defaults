@@ -1,6 +1,6 @@
 # ![](icon.svg) Pandoc/Defaults repository
 
-This repository is about a way to reference instructions on how to process a Markdown file with Pandoc within the Markdown file itself, using an entry in the YAML header:
+This repository is about a way to reference instructions on how to process a Markdown file with [Pandoc](https://pandoc.org/) within the Markdown file itself, using an entry in the YAML header:
 
 ````yaml
 pandoc-defaults_:

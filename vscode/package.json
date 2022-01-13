@@ -10,6 +10,8 @@
 	"keywords": [
 		"Pandoc", "Markdown"
 	],
+	"icon": "icon.png",
+	"repository": {"url": "https://github.com/allefeld/pandoc-defaults/tree/main/vscode"},
 
 	"main": "./out/extension.js",
 	"engines": {
@@ -22,7 +24,7 @@
 		"commands":[
 			{
 				"command": "pandocDefaults.processFirst",
-				"title": "process First",
+				"title": "Process First",
 				"category": "Pandoc/Defaults"
 			},
 			{
