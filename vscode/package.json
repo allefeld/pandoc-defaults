@@ -1,75 +1,77 @@
 {
     "name": "pandoc-defaults",
-	"displayName": "Pandoc/Defaults",
-	"description": "Process Markdown files with Pandoc into defined formats.",
-	"publisher": "allefeld",
-	"version": "0.0.1",
-	"categories": [
-		"Other"
-	],
-	"keywords": [
-		"Pandoc", "Markdown"
-	],
-	"icon": "icon.png",
-	"repository": {"url": "https://github.com/allefeld/pandoc-defaults/tree/main/vscode"},
-
-	"main": "./out/extension.js",
-	"engines": {
-		"vscode": "^1.63.0"
-	},
-	"activationEvents": [
-		"onLanguage:markdown"
-	],
-	"contributes": {
-		"commands":[
-			{
-				"command": "pandocDefaults.processFirst",
-				"title": "Process First",
-				"category": "Pandoc/Defaults"
-			},
-			{
-				"command": "pandocDefaults.processAll",
-				"title": "Process All",
-				"category": "Pandoc/Defaults"
-			},
-			{
-				"command": "pandocDefaults.showTerminal",
-				"title": "Show Terminal",
-				"category": "Pandoc/Defaults"
-			}
-		],
-		"keybindings": [
-			{
-				"key": "alt+p",
-				"when": "editorLangId == markdown",
-				"command": "pandocDefaults.processFirst"
-			},
-			{
-				"key": "ctrl+alt+p",
-				"when": "editorLangId == markdown",
-				"command": "pandocDefaults.processAll"
-			}
-		]
-	},
-	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./",
-		"watch": "tsc -watch -p ./",
-		"pretest": "npm run compile && npm run lint",
-		"lint": "eslint src --ext ts",
-		"test": "node ./out/test/runTest.js"
-	},
-	"devDependencies": {
-		"@types/vscode": "^1.63.0",
-		"@types/glob": "^7.1.4",
-		"@types/mocha": "^9.0.0",
-		"@types/node": "14.x",
-		"@typescript-eslint/eslint-plugin": "^5.1.0",
-		"@typescript-eslint/parser": "^5.1.0",
-		"eslint": "^8.1.0",
-		"glob": "^7.1.7",
-		"mocha": "^9.1.3",
-		"typescript": "^4.4.4",
-		"@vscode/test-electron": "^1.6.2"
-	}
+    "displayName": "Pandoc/Defaults",
+    "description": "Process Markdown files with Pandoc into defined formats.",
+    "publisher": "allefeld",
+    "version": "0.0.1",
+    "categories": [
+        "Other"
+    ],
+    "keywords": [
+        "Pandoc",
+        "Markdown"
+    ],
+    "icon": "icon.png",
+    "repository": {
+        "url": "https://github.com/allefeld/pandoc-defaults/tree/main/vscode"
+    },
+    "main": "./out/extension.js",
+    "engines": {
+        "vscode": "^1.63.0"
+    },
+    "activationEvents": [
+        "onLanguage:markdown"
+    ],
+    "contributes": {
+        "commands": [
+            {
+                "command": "pandocDefaults.processFirst",
+                "title": "Process First",
+                "category": "Pandoc/Defaults"
+            },
+            {
+                "command": "pandocDefaults.processAll",
+                "title": "Process All",
+                "category": "Pandoc/Defaults"
+            },
+            {
+                "command": "pandocDefaults.showTerminal",
+                "title": "Show Terminal",
+                "category": "Pandoc/Defaults"
+            }
+        ],
+        "keybindings": [
+            {
+                "key": "alt+p",
+                "when": "editorLangId == markdown",
+                "command": "pandocDefaults.processFirst"
+            },
+            {
+                "key": "ctrl+alt+p",
+                "when": "editorLangId == markdown",
+                "command": "pandocDefaults.processAll"
+            }
+        ]
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "pretest": "npm run compile && npm run lint",
+        "lint": "eslint src --ext ts",
+        "test": "node ./out/test/runTest.js"
+    },
+    "devDependencies": {
+        "@types/glob": "^7.1.4",
+        "@types/mocha": "^9.0.0",
+        "@types/node": "14.x",
+        "@types/vscode": "^1.63.0",
+        "@typescript-eslint/eslint-plugin": "^5.1.0",
+        "@typescript-eslint/parser": "^5.1.0",
+        "@vscode/test-electron": "^1.6.2",
+        "eslint": "^8.1.0",
+        "glob": "^7.1.7",
+        "mocha": "^9.1.3",
+        "typescript": "^4.4.4"
+    }
 }

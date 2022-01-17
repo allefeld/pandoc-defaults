@@ -1,11 +1,15 @@
 # TODO
 
--   create a problem matcher
-    It will need to be "multiline":
-    <https://code.visualstudio.com/docs/editor/tasks#_defining-a-multiline-problem-matcher>
+-   prevent multiple processes at the same time
+-   terminate running process if terminal closed
 
 -   repeat processing on save
+    https://code.visualstudio.com/api/references/vscode-api#workspace.createFileSystemWatcher
 
 -   configuration: `pdExecutable`, also `PD_PANDOC`
 
--   warn if invoked on document with wrong language?
+-   syntax:
+    https://code.visualstudio.com/api/language-extensions/syntax-highlight-guide
+    https://github.com/dsanson/Pandoc.tmbundle/blob/master/Syntaxes/Pandoc.tmLanguage
+    https://github.com/microsoft/vscode/tree/main/extensions/markdown-basics/syntaxes
+
