@@ -1,10 +1,7 @@
-#!/usr/bin/python3
+#!/usr/bin/python3 -u
 
-"""Pandoc/Defaults compliant processor implementation in Python.
+"""Pandoc/Defaults processor implementation in Python.
 Processes file with Pandoc into formats specified in its YAML header."""
-
-
-# Should be at least Python 3.7, so that dictionaries are ordered.
 
 
 import argparse
@@ -13,12 +10,9 @@ import sys
 import os
 import shutil
 import shlex
-import atexit
 
 from yaml import safe_load
 from yaml.error import YAMLError
-import colorama
-from colorama import Fore, Style
 
 
 # YAML key under which Pandoc/Defaults formats are defined
@@ -52,6 +46,14 @@ exit status:
  
 '''
 
+# ANSI escape sequences
+YELLOW = '\x1b[33m'     # yellow foreground color
+RED = '\x1b[31m'        # red foreground color
+GREEN = '\x1b[32m'      # green foreground color
+RESET = '\x1b[39m'      # default foreground color
+BRIGHT = '\x1b[1m'      # increased intensity
+NORMAL = '\x1b[22m'     # normal intensity
+
 
 class PDFormatsError(Exception):
     def __init__(self):
@@ -75,7 +77,7 @@ warned = False
 def print_w(message):
     """print colored warning message"""
     # only for warnings that should get the user's attention
-    print(Fore.YELLOW + message + Fore.RESET)
+    print(YELLOW + message + RESET)
     global warned
     warned = True
 
@@ -83,13 +85,13 @@ def print_w(message):
 def print_e(message):
     """print colored error message"""
     # only for fatal errors
-    print(Fore.RED + message + Fore.RESET)
+    print(RED + message + RESET)
 
 
 def print_h(heading):
     """print colored heading"""
     heading = f'――― {heading} ' + '―' * 79
-    print(Fore.GREEN + heading[:79] + Fore.RESET)
+    print(GREEN + heading[:79] + RESET)
 
 
 def print_log(message):
@@ -234,23 +236,6 @@ def pandoc_defaults(filename, first=False):
 
 
 if __name__ == '__main__':
-    # initialize platform-independent output color
-    colorama.init()
-    atexit.register(colorama.deinit)    # necessary?
-
-    print()
-    print(Style.BRIGHT + 'Pandoc/Defaults' + Style.NORMAL)
-    print()
-
-    # get Pandoc executable
-    pandoc = os.getenv('PD_PANDOC', 'pandoc')
-    pandoc_exe = shutil.which(pandoc)
-    if pandoc_exe is None:
-        print_e(f'could not find Pandoc executable "{pandoc}"')
-        print_e('use the environment variable PD_PANDOC to set it')
-        print()
-        sys.exit(3)
-
     # process command line arguments
     parser = argparse.ArgumentParser(
         description=__doc__,
@@ -271,6 +256,10 @@ if __name__ == '__main__':
     args = parser.parse_args()      # exits if error or `--help`
     args.filename = os.path.abspath(args.filename)
 
+    print()
+    print(BRIGHT + 'Pandoc/Defaults' + NORMAL)
+    print()
+
     # print canonical command line
     cargs = sys.argv[0]
     if args.first:
@@ -282,6 +271,15 @@ if __name__ == '__main__':
     cargs += ' ' + args.filename
     print(f'▶ {cargs}')
     print()
+
+    # get Pandoc executable
+    pandoc = os.getenv('PD_PANDOC', 'pandoc')
+    pandoc_exe = shutil.which(pandoc)
+    if pandoc_exe is None:
+        print_e(f'could not find Pandoc executable "{pandoc}"')
+        print_e('use the environment variable PD_PANDOC to set it')
+        print()
+        sys.exit(3)
 
     # run
     try:
