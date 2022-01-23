@@ -51,7 +51,30 @@
                 "when": "editorLangId == markdown",
                 "command": "pandocDefaults.processAll"
             }
-        ]
+        ],
+        "configuration":{
+            "title": "Pandoc/Defaults",
+            "properties": {
+                "pandoc-defaults.executable": {
+                    "type": "string",
+                    "default": "pd",
+                    "scope": "window",
+                    "markdownDescription": "Name or path of Pandoc/Defaults processor. For the [standard Python implementation](https://github.com/allefeld/pandoc-defaults/blob/main/python) it is recommended to install it as `pd`."
+                },
+                "pandoc-defaults.reprocessOnSave" : {
+                    "type": "boolean",
+                    "default": false,
+                    "scope": "window",
+                    "markdownDescription": "Whether to reprocess a document when saved, if it has been explicitly processed before."
+                },
+                "pandoc-defaults.killPreviousProcess" : {
+                    "type": "boolean",
+                    "default": false,
+                    "scope": "window",
+                    "markdownDescription": "When processing is started, whether to kill a previously running process. Otherwise, the new processing is cancelled."
+                }
+            }
+        }
     },
     "scripts": {
         "vscode:prepublish": "npm run compile",
