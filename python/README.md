@@ -7,10 +7,31 @@ This Python command line application is an implementation of a Pandoc/Defaults p
 
 ## Usage
 
+````
+pd [-h] [-f | -c] filename
+
+Pandoc/Defaults processor implementation in Python.
+Processes file with Pandoc into formats specified in its YAML header.
+
+positional arguments:
+  filename     file to be processed
+
+optional arguments:
+  -h, --help   show this help message and exit
+  -f, --first  process only the first format
+  -c, --clean  delete all files resulting from formats
+
+exit status:
+    0: no warnings or errors
+    1: one or more warnings
+    2: one or more of the formats failed
+    3: failed completely
+ ````
+
 
 ## Installation
 
-Download the Python script `pd.py`, put it (or a symbolic link to it) into a directory on your `PATH`, and make it executable (Linux `chmod +x`). It is recommended to name the copy or link `pd`.
+Download the Python script `pd.py`, put it (or a symbolic link to it) into a directory on your `PATH`, and make it executable (Linux `chmod +x`). It is recommended to name the script or link `pd`.
 
 
 ## Requirements

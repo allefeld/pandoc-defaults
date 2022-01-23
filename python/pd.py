@@ -21,7 +21,7 @@ header_key = 'pandoc-defaults_'
 # format specifications to use if none are present
 default_formats = [{'html': None}]
 
-# start-of-line markers for warnings and errors in Pandoc output
+# start-of-line markers for warnings and errors in Pandoc output:
 # only for warnings that should get the user's attention
 log_warning = [
     '[WARNING]',                # Pandoc
@@ -41,7 +41,7 @@ help_epilog = '''
 exit status:
     0: no warnings or errors
     1: one or more warnings
-    2: one of the formats failed
+    2: one or more of the formats failed
     3: failed completely
  
 '''
@@ -204,7 +204,20 @@ def process_format(filename, ext, defaults):
     return proc.returncode
 
 
-def pandoc_defaults(filename, first=False):
+def clean_format(filename, ext):
+    """delete output file resulting from format"""
+    # determine filename of output
+    filename, mdext = os.path.splitext(filename)
+    filename = f'{filename}.{ext}'
+    # delete file
+    try:
+        os.remove(filename)
+        print(GREEN + '✓' + RESET + f' {filename}')
+    except (FileNotFoundError, IsADirectoryError):
+        print(YELLOW + '✗' + RESET + f' {filename}')
+
+
+def pandoc_defaults(filename, first=False, clean=False):
     """Pandoc/Defaults implementation"""
 
     # get YAML header
@@ -218,6 +231,14 @@ def pandoc_defaults(filename, first=False):
     for ext, defaults in formats.items():
         print(f'    {ext} ← {defaults}')
     print()
+
+    # optionally clean outputs instead of processing
+    if clean:
+        print('cleaning')
+        for ext, defaults in formats.items():
+            returncode = clean_format(filename, ext)
+        print()
+        return
 
     # optionally restrict to first format
     if first:
@@ -243,16 +264,13 @@ if __name__ == '__main__':
         epilog=help_epilog)
     parser.add_argument('filename',
                         help='file to be processed')
-    parser.add_argument('-f', '--first',
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument('-f', '--first',
                         help='process only the first format',
                         action='store_true')
-    # group = parser.add_mutually_exclusive_group()
-    # group.add_argument('-c', '--clean',
-    #                    help='delete all files resulting from formats',
-    #                    action='store_true')
-    # group.add_argument('-w', '--watch',
-    #                    help='watch the file for changes and reprocess',
-    #                    action='store_true')
+    group.add_argument('-c', '--clean',
+                       help='delete all files resulting from formats',
+                       action='store_true')
     args = parser.parse_args()      # exits if error or `--help`
     args.filename = os.path.abspath(args.filename)
 
@@ -264,10 +282,8 @@ if __name__ == '__main__':
     cargs = sys.argv[0]
     if args.first:
         cargs += ' --first'
-    # if args.clean:
-    #     cargs += ' --clean'
-    # if args.watch:
-    #     cargs += ' --watch'
+    if args.clean:
+        cargs += ' --clean'
     cargs += ' ' + args.filename
     print(f'▶ {cargs}')
     print()
@@ -284,7 +300,7 @@ if __name__ == '__main__':
     # run
     try:
         warned = False
-        pandoc_defaults(args.filename, first=args.first)
+        pandoc_defaults(args.filename, first=args.first, clean=args.clean)
         if warned:
             sys.exit(1)
     except FileNotFoundError as e:
