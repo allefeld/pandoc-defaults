@@ -3,9 +3,6 @@ import * as child_process from 'child_process';
 import { kill } from 'process';
 
 
-// name of the extension
-const extName = 'pandoc-defaults';
-
 // display name of the extension
 const extDisplayName = 'Pandoc/Defaults';
 
@@ -84,7 +81,7 @@ const errorBg = new vscode.ThemeColor('statusBarItem.errorBackground');
 function statusCreate(): void {
 	status = vscode.window.createStatusBarItem();
 	status.tooltip = extDisplayName;
-	status.command = 'pandocDefaults.showTerminal';
+	status.command = extDisplayName + '.showTerminal';
 	status.show();
 
 	statusClear();
@@ -123,7 +120,7 @@ var processing: boolean = false;
 
 function pdRun(args: string[] = []): void {
 	// get configured killing policy
-	const killPreviousProcess = vscode.workspace.getConfiguration(extName)
+	const killPreviousProcess = vscode.workspace.getConfiguration(extDisplayName)
 		.get<string>('killPreviousProcess');
 	// ensure there is no other processing happening
 	if (processing && !killPreviousProcess) {
@@ -132,7 +129,7 @@ function pdRun(args: string[] = []): void {
 	}
 	pdKill();
 	// get configured executable name
-	const executable = vscode.workspace.getConfiguration(extName)
+	const executable = vscode.workspace.getConfiguration(extDisplayName)
 		.get<string>('executable');
 	if (executable === undefined) {
 		// this should never happen!
@@ -248,7 +245,7 @@ function process(document: vscode.TextDocument, args: any[]): void {
 
 function reprocessSaved(document: vscode.TextDocument): void {
 	// get configured reprocessing policy
-	const reprocessOnSave = vscode.workspace.getConfiguration(extName)
+	const reprocessOnSave = vscode.workspace.getConfiguration(extDisplayName)
 		.get<boolean>('reprocessOnSave');
 	// is reprocessing on?
 	if (!reprocessOnSave) {
@@ -268,7 +265,7 @@ function reprocessSaved(document: vscode.TextDocument): void {
 		return;
 	}
 	// process the document again
-	vscode.commands.executeCommand('pandocDefaults.processFirst');
+	vscode.commands.executeCommand(extDisplayName + '.processFirst');
 }
 
 
@@ -301,19 +298,19 @@ export function activate(context: vscode.ExtensionContext): void {
 	// commands
 	let disposable;
 	disposable = vscode.commands.registerTextEditorCommand(
-		'pandocDefaults.processFirst',
+		extDisplayName + '.processFirst',
 		(editor, edit) => processFirst(editor.document));
 	context.subscriptions.push(disposable);
 	disposable = vscode.commands.registerTextEditorCommand(
-		'pandocDefaults.processAll',
+		extDisplayName + '.processAll',
 		(editor, edit) => processAll(editor.document));
 	context.subscriptions.push(disposable);
 	disposable = vscode.commands.registerTextEditorCommand(
-		'pandocDefaults.clean',
+		extDisplayName + '.clean',
 		(editor, edit) => clean(editor.document));
 	context.subscriptions.push(disposable);
 	disposable = vscode.commands.registerCommand(
-		'pandocDefaults.showTerminal', terminalShow);
+		extDisplayName + '.showTerminal', terminalShow);
 	context.subscriptions.push(disposable);
 
 	// prepare reprocessing on save of already processed documents

@@ -9,27 +9,54 @@ This extension makes an external Pandoc/Defaults processor available through com
 
 The extension contributes the following commands:
 
--   *Pandoc/Defaults: Process All* (`pandocDefaults.processAll`)\
+-   __Pandoc/Defaults: Process All__\
+    `Pandoc/Defaults.processAll`\
     default keyboard shortcut: <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>P</kbd>
 
     processes all formats defined in the file in the active editor
 
--   *Pandoc/Defaults: Process First* (`pandocDefaults.processFirst`)\
+-   __Pandoc/Defaults: Process First__\
+    `Pandoc/Defaults.processFirst`\
     default keyboard shortcut: <kbd>Alt</kbd>+<kbd>P</kbd>
 
     processes the first format defined in the file in the active editor
 
--   *Pandoc/Defaults: Clean* (`pandocDefaults.clean`)\
+-   __Pandoc/Defaults: Clean__\
+    `Pandoc/Defaults.clean`\
     default keyboard shortcut: <kbd>Shift</kbd>+<kbd>Alt</kbd>+<kbd>P</kbd>
 
     deletes files resulting from all formats defined in the file in the active editor
 
--   *Pandoc/Defaults: Show Terminal* (`pandocDefaults.showTerminal`)\
+-   __Pandoc/Defaults: Show Terminal__\
+    `Pandoc/Defaults.showTerminal`\
     triggered by clicking the Pandoc/Defaults status bar item (icon ¶).
 
-    shows the dedicated Pandoc/Defaults terminal
+    shows the dedicated terminal
 
 The keyboard shortcuts are only bound if the active editor has the language "Markdown".
+
+
+## Settings
+
+The extension contributes the following settings:
+
+-   __Pandoc/Defaults: Executable__\
+    `Pandoc/Defaults.executable`\
+    default: `"pd"`
+
+    Name or path of Pandoc/Defaults processor.
+
+-   __Pandoc/Defaults: Kill Previous Process__\
+    `Pandoc/Defaults.killPreviousProcess`\
+    default: `false`
+
+    Whether to reprocess a document when saved, if it has been explicitly processed before.
+
+-   __Pandoc/Defaults: Reprocess On Save__\
+    `Pandoc/Defaults.reprocessOnSave`\
+    default: `false`
+
+    When processing is started, whether to kill a previously running process. Otherwise, the new processing is cancelled.
 
 
 ## Installation

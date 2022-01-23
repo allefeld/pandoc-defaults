@@ -25,22 +25,22 @@
     "contributes": {
         "commands": [
             {
-                "command": "pandocDefaults.processFirst",
+                "command": "Pandoc/Defaults.processFirst",
                 "title": "Process First",
                 "category": "Pandoc/Defaults"
             },
             {
-                "command": "pandocDefaults.processAll",
+                "command": "Pandoc/Defaults.processAll",
                 "title": "Process All",
                 "category": "Pandoc/Defaults"
             },
             {
-                "command": "pandocDefaults.clean",
+                "command": "Pandoc/Defaults.clean",
                 "title": "Clean",
                 "category": "Pandoc/Defaults"
             },
             {
-                "command": "pandocDefaults.showTerminal",
+                "command": "Pandoc/Defaults.showTerminal",
                 "title": "Show Terminal",
                 "category": "Pandoc/Defaults"
             }
@@ -49,35 +49,35 @@
             {
                 "key": "alt+p",
                 "when": "editorLangId == markdown",
-                "command": "pandocDefaults.processFirst"
+                "command": "Pandoc/Defaults.processFirst"
             },
             {
                 "key": "ctrl+alt+p",
                 "when": "editorLangId == markdown",
-                "command": "pandocDefaults.processAll"
+                "command": "Pandoc/Defaults.processAll"
             },
             {
                 "key": "shift+alt+p",
                 "when": "editorLangId == markdown",
-                "command": "pandocDefaults.clean"
+                "command": "Pandoc/Defaults.clean"
             }
         ],
         "configuration":{
             "title": "Pandoc/Defaults",
             "properties": {
-                "pandoc-defaults.executable": {
+                "Pandoc/Defaults.executable": {
                     "type": "string",
                     "default": "pd",
                     "scope": "window",
                     "markdownDescription": "Name or path of Pandoc/Defaults processor. For the [standard Python implementation](https://github.com/allefeld/pandoc-defaults/blob/main/python) it is recommended to install it as `pd`."
                 },
-                "pandoc-defaults.reprocessOnSave" : {
+                "Pandoc/Defaults.reprocessOnSave" : {
                     "type": "boolean",
                     "default": false,
                     "scope": "window",
                     "markdownDescription": "Whether to reprocess a document when saved, if it has been explicitly processed before."
                 },
-                "pandoc-defaults.killPreviousProcess" : {
+                "Pandoc/Defaults.killPreviousProcess" : {
                     "type": "boolean",
                     "default": false,
                     "scope": "window",
