@@ -38,11 +38,14 @@ log_error = [
 
 # help message epilog: exit status
 help_epilog = '''
+environment variables:
+  PD_PANDOC: if set, used as the name of the Pandoc executable
+
 exit status:
-    0: no warnings or errors
-    1: one or more warnings
-    2: one or more of the formats failed
-    3: failed completely
+  0: no warnings or errors
+  1: one or more warnings
+  2: one or more of the formats failed
+  3: failed completely
  
 '''
 
@@ -266,8 +269,8 @@ if __name__ == '__main__':
                         help='file to be processed')
     group = parser.add_mutually_exclusive_group()
     group.add_argument('-f', '--first',
-                        help='process only the first format',
-                        action='store_true')
+                       help='process only the first format',
+                       action='store_true')
     group.add_argument('-c', '--clean',
                        help='delete all files resulting from formats',
                        action='store_true')

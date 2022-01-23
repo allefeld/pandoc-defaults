@@ -72,7 +72,9 @@ code --install-extension <path-to-vsix>
 
 A Pandoc/Defaults processor has to be installed separately, see the [Python implementation](https://github.com/allefeld/pandoc-defaults/tree/main/python). The processor in turn requires [Pandoc](https://pandoc.org/installing.html) to be installed.
 
-## Notes
 
-The extension icon is based on `whitespace.svg` from the [Visual Studio Code icons collection](https://github.com/microsoft/vscode-codicons).
+***
 
+This software is copyrighted © 2022 by Carsten Allefeld and released under the terms of the GNU General Public License, version 3 or later.
+
+The extension icon (`icon.svg` and `icon.png`) is based on `whitespace.svg` from the [Visual Studio Code icons collection](https://github.com/microsoft/vscode-codicons), © Microsoft and released under the terms of Creative Commons Attribution 4.0 International Public License.

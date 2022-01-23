@@ -21,11 +21,14 @@ optional arguments:
   -f, --first  process only the first format
   -c, --clean  delete all files resulting from formats
 
+environment variables:
+  PD_PANDOC: if set, used as the name of the Pandoc executable
+
 exit status:
-    0: no warnings or errors
-    1: one or more warnings
-    2: one or more of the formats failed
-    3: failed completely
+  0: no warnings or errors
+  1: one or more warnings
+  2: one or more of the formats failed
+  3: failed completely
  ````
 
 
@@ -43,3 +46,8 @@ Beyond the standard library, only the package [PyYAML](https://pyyaml.org/) is u
 In addition, [Pandoc](https://pandoc.org/installing.html) has to be installed for the actual processing.
 
 The program uses [ANSI escape sequences](https://en.wikipedia.org/wiki/ANSI_escape_code) to colorize its output. They are supported in recent versions of the Windows Console, but earlier versions may need special configuration.
+
+
+***
+
+This software is copyrighted © 2022 by Carsten Allefeld and released under the terms of the GNU General Public License, version 3 or later.

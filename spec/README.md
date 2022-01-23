@@ -28,3 +28,8 @@ pd pandoc-defaults.text
 This should create the files `pandoc-defaults.html` and `pandoc-defaults.pdf`.
 
 Alternatively, you can put the YAML files into the `defaults` subdirectory of the Pandoc user data directory.
+
+
+***
+
+The specification is copyrighted © 2022 by Carsten Allefeld and released under the terms of the Creative Commons Attribution-ShareAlike 4.0 International License.
