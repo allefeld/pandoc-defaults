@@ -217,22 +217,25 @@
 <header id="title-block-header">
 <h1 class="title">Pandoc/Defaults</h1>
 <p class="author">Carsten Allefeld</p>
-<p class="date">2022–1–12</p>
+<p class="date">2022–1–23</p>
 </header>
 <nav id="TOC" role="doc-toc">
+<h2 id="toc-title">Contents</h2>
 <ul>
 <li><a href="#background"><span class="toc-section-number">1</span> Background</a></li>
 <li><a href="#specification"><span class="toc-section-number">2</span> Specification</a></li>
-<li><a href="#design-principles"><span class="toc-section-number">3</span> Design principles</a></li>
+<li><a href="#additions"><span class="toc-section-number">3</span> Additions</a></li>
+<li><a href="#design-principles"><span class="toc-section-number">4</span> Design principles</a></li>
 </ul>
 </nav>
-<p>This document describes a way to define “formats” (Pandoc processing instructions) and associate Markdown files with them, and specifies the behavior of a program which processes such files.</p>
+<h2 class="unnumbered" id="abstract">Abstract</h2>
+<p>This document describes a way to define “formats” (Pandoc processing instructions) and associate Markdown files with them, and specifies the behaviour of a program which processes such files.</p>
 <h1 data-number="1" id="background"><span class="header-section-number">1</span> Background</h1>
 <h2 data-number="1.1" id="motivation"><span class="header-section-number">1.1</span> Motivation</h2>
-<p><a href="https://pandoc.org/">Pandoc</a> is an extremely versatile tool for document conversion, centered on its own feature-rich version of Markdown which makes it possible to write complex documents. There are many purposes Pandoc can be used for, and a large number of command line options allow to tailor Pandoc’s functions to these special uses.</p>
+<p><a href="https://pandoc.org/">Pandoc</a> is an extremely versatile tool for document conversion, centred on its own feature-rich version of Markdown which makes it possible to write complex documents. There are many purposes Pandoc can be used for, and a large number of command line options allow to tailor Pandoc’s functions to these special uses.</p>
 <p>For many people, Pandoc has become an integral part of their daily routine, much like Microsoft Word and PowerPoint are used by others. In this context, there are typically a small number of use cases which repeat over and over again, and specifying command line options for them manually is tedious and error-prone. Such use cases might be:</p>
 <ul>
-<li>create a slide presentation (with specific color scheme and logo),</li>
+<li>create a slide presentation (with specific colour scheme and logo),</li>
 <li>write a technical report,</li>
 <li>write a letter (with a specific letterhead),</li>
 <li>prepare an academic publication,</li>
@@ -248,7 +251,7 @@
 <li><a href="https://github.com/allefeld/atom-pandoc-pdf">Pandoc/PDF</a>, a package for the Atom editor which allows to associate file extensions with Pandoc options, <!-- 2020–1–1 --></li>
 <li>and probably several others.</li>
 </ul>
-<p>The problem is that there is no common standard for defining such formats, and for associating them with a Markdown file. (Yes, I am aware of <a href="https://xkcd.com/927/">the “Standards” xkcd</a>, but see next section.) Moreover, the route taken by some of these packages, to specify options in detail within the file, goes against the idea of resuable formats, and tends to reproduce the abominably endless preambles of LaTeX files as well as the variety of slightly differently formatted Word documents.</p>
+<p>The problem is that there is no common standard for defining such formats, and for associating them with a Markdown file. (Yes, I am aware of <a href="https://xkcd.com/927/">the “Standards” xkcd</a>, but see next section.) Moreover, the route taken by some of these packages, to specify options in detail within the file, goes against the idea of reusable formats, and tends to reproduce the abominably endless preambles of LaTeX files as well as the variety of slightly differently formatted Word documents.</p>
 <h2 data-number="1.2" id="pandocs-defaults-files-as-formats"><span class="header-section-number">1.2</span> Pandoc’s defaults files as formats</h2>
 <p>Since version 2.8 (and reasonably bug-free since 2.9.1), Pandoc supports a command line argument <code>--defaults</code> with which a so-called <a href="https://pandoc.org/MANUAL.html#default-files">“defaults file”</a> is specified. This file is in YAML format and makes it possible to configure all aspects of the Pandoc conversion process in a single file. With this, there is now a “common standard” for defining formats endorsed by the creator of Pandoc himself.</p>
 <p>With this option, running Pandoc in a customized way becomes as simple as e.g.</p>
@@ -300,25 +303,26 @@
 <div class="sourceCode" id="cb7"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pandoc-defaults_</span><span class="kw">:</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">html</span><span class="kw">:</span><span class="at"> html</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">docx</span><span class="kw">:</span><span class="at"> docx</span></span></code></pre></div>
-<p>To accomodate the case of simple one-off Markdown files, either without an initial YAML block or without a top-level key <code>pandoc-defaults_</code>, in this case the Pandoc/Defaults processor is to act as if the document contained the entry</p>
+<p>To accommodate the case of simple one-off Markdown files, either without an initial YAML block or without a top-level key <code>pandoc-defaults_</code>, in this case the Pandoc/Defaults processor is to act as if the document contained the entry</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pandoc-defaults_</span><span class="kw">:</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">html</span><span class="kw">:</span></span></code></pre></div>
 <p>Referencing a defaults file, either explicitly through a value or implicitly by omitting it, assumes that such a file can be found by Pandoc. That means that the defaults file has to be either installed in the <code>defaults</code> subdirectory of the Pandoc <a href="https://pandoc.org/MANUAL.html#option--data-dir">user data directory</a>, or that it has to be present in the directory of the Markdown file.</p>
 <p>If the user wishes to use Pandoc’s built-in settings and templates unchanged, they can use a minimal defaults file. For example, <code>html.yaml</code> could simply contain the lines:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">writer</span><span class="kw">:</span><span class="at"> html5</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">standalone</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code></pre></div>
-<p>The behavior described above is the core functionality expected from a Pandoc/Defaults processor, but it may offer further functions. For example, an editor may</p>
+<h1 data-number="3" id="additions"><span class="header-section-number">3</span> Additions</h1>
+<p>The behaviour described above is the core functionality expected from a Pandoc/Defaults processor, but it may offer further functions. For example, an editor may</p>
 <ul>
 <li>provide another keyboard shortcut, in response to which only the first key/value pair is used,</li>
 <li>provide a drop-down menu with entries corresponding to the key/value pairs, so that in response to a selection only the selected key/value pair is used, or</li>
 <li>automatically open the file created from the first key/value pair in a viewer application or tab.</li>
 </ul>
-<p>If the file extension suggests preprocessing, a Pandoc/Defaults processor may run the preprocessor before invoking Pandoc on the resulting file; examples are <code>Rmd</code> files to be processed with <a href="https://yihui.org/knitr/">knitr</a> or <code>pmd</code> files to be processed with <a href="https://mpastell.com/pweave/">Pweave</a> on files with the extension <code>pmd</code>.</p>
-<h1 data-number="3" id="design-principles"><span class="header-section-number">3</span> Design principles</h1>
+<p>If the file extension suggests preprocessing, a Pandoc/Defaults processor may run the preprocessor before invoking Pandoc on the resulting file; examples are <code>Rmd</code> files to be processed with <a href="https://yihui.org/knitr/">knitr</a> or <code>pmd</code> files to be processed with <a href="https://mpastell.com/pweave/">Pweave</a>.</p>
+<h1 data-number="4" id="design-principles"><span class="header-section-number">4</span> Design principles</h1>
 <ul>
 <li><p>Pandoc/Defaults is designed to rely as much as possible on existing functionality of Pandoc, adding only what cannot be achieved using Pandoc alone.</p></li>
 <li><p>Format information is added to the Markdown file itself in order to avoid complex configuration, e.g. based on file extensions or parts of the file name, or to have directories cluttered with sidecar configuration files. Note however that this system is compatible with using formats defined locally but separately, due to the way Pandoc <a href="https://pandoc.org/MANUAL.html#option--defaults">searches for defaults files</a>.</p></li>
-<li><p>The YAML key under which formats are defined ends in an underscore so that it does not affect processing by Pandoc.</p></li>
+<li><p>The YAML key under which formats are defined ends in an underscore so that it is ignored by Pandoc.</p></li>
 <li><p>Formats are listed in a sequence of single-key mappings (the standard way to <a href="https://yaml.org/type/omap.html">represent an ordered mapping in YAML</a>), because a simple YAML mapping has no defined order; this way it is possible to identify a “first” format.</p></li>
 <li><p>Output file extensions are used as keys because it does not make sense to create more than one file with the same name.</p></li>
 <li><p>Pandoc is to be run in the directory of the input file so that local external resources (images, defaults files) are found.</p></li>

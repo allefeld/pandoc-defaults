@@ -4,3 +4,5 @@ standalone: true
 toc: true
 toc-depth: 1
 number-sections: true
+variables:
+  toc-title: Contents

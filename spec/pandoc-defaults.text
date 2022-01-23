@@ -1,25 +1,27 @@
 ---
 title: Pandoc/Defaults
 author: Carsten Allefeld
-date: 2022–1–12
+date: 2022–1–23
 pandoc-defaults_:
     - html:
     - pdf: document_latex
 ...
 
 
-This document describes a way to define "formats" (Pandoc processing instructions) and associate Markdown files with them, and specifies the behavior of a program which processes such files.
+## Abstract {-}
+
+This document describes a way to define "formats" (Pandoc processing instructions) and associate Markdown files with them, and specifies the behaviour of a program which processes such files.
 
 
 # Background
 
 ## Motivation
 
-[Pandoc](https://pandoc.org/) is an extremely versatile tool for document conversion, centered on its own feature-rich version of Markdown which makes it possible to write complex documents. There are many purposes Pandoc can be used for, and a large number of command line options allow to tailor Pandoc's functions to these special uses.
+[Pandoc](https://pandoc.org/) is an extremely versatile tool for document conversion, centred on its own feature-rich version of Markdown which makes it possible to write complex documents. There are many purposes Pandoc can be used for, and a large number of command line options allow to tailor Pandoc's functions to these special uses. 
 
-For many people, Pandoc has become an integral part of their daily routine, much like Microsoft Word and PowerPoint are used by others. In this context, there are typically a small number of use cases which repeat over and over again, and specifying command line options for them manually is tedious and error-prone. Such use cases might be:
+For many people, Pandoc has become an integral part of their daily routine, much like Microsoft Word and PowerPoint are used  by others. In this context, there are typically a small number of use cases which repeat over and over again, and specifying command line options for them manually is tedious and error-prone. Such use cases might be:
 
--   create a slide presentation (with specific color scheme and logo),
+-   create a slide presentation (with specific colour scheme and logo),
 -   write a technical report,
 -   write a letter (with a specific letterhead),
 -   prepare an academic publication,
@@ -36,7 +38,7 @@ There have been a number of attempts to wrap Pandoc in a way that makes it easy 
 -   [Pandoc/PDF](https://github.com/allefeld/atom-pandoc-pdf), a package for the Atom editor which allows to associate file extensions with Pandoc options, <!-- 2020–1–1 -->
 -   and probably several others.
 
-The problem is that there is no common standard for defining such formats, and for associating them with a Markdown file. (Yes, I am aware of [the "Standards" xkcd](https://xkcd.com/927/), but see next section.) Moreover, the route taken by some of these packages, to specify options in detail within the file, goes against the idea of resuable formats, and tends to reproduce the abominably endless preambles of LaTeX files as well as the variety of slightly differently formatted Word documents.
+The problem is that there is no common standard for defining such formats, and for associating them with a Markdown file. (Yes, I am aware of [the "Standards" xkcd](https://xkcd.com/927/), but see next section.) Moreover, the route taken by some of these packages, to specify options in detail within the file, goes against the idea of reusable formats, and tends to reproduce the abominably endless preambles of LaTeX files as well as the variety of slightly differently formatted Word documents.
 
 ## Pandoc's defaults files as formats
 
@@ -128,7 +130,7 @@ pandoc-defaults_:
     - docx: docx
 ````
 
-To accomodate the case of simple one-off Markdown files, either without an initial YAML block or without a top-level key `pandoc-defaults_`, in this case the Pandoc/Defaults processor is to act as if the document contained the entry
+To accommodate the case of simple one-off Markdown files, either without an initial YAML block or without a top-level key `pandoc-defaults_`, in this case the Pandoc/Defaults processor is to act as if the document contained the entry
 
 ````yaml
 pandoc-defaults_:
@@ -144,13 +146,16 @@ writer: html5
 standalone: true
 ````
 
-The behavior described above is the core functionality expected from a Pandoc/Defaults processor, but it may offer further functions. For example, an editor may
+
+# Additions
+
+The behaviour described above is the core functionality expected from a Pandoc/Defaults processor, but it may offer further functions. For example, an editor may
 
 -   provide another keyboard shortcut, in response to which only the first key/value pair is used,
 -   provide a drop-down menu with entries corresponding to the key/value pairs, so that in response to a selection only the selected key/value pair is used, or
 -   automatically open the file created from the first key/value pair in a viewer application or tab.
 
-If the file extension suggests preprocessing, a Pandoc/Defaults processor may run the preprocessor before invoking Pandoc on the resulting file; examples are `Rmd` files to be processed with [knitr](https://yihui.org/knitr/) or `pmd` files to be processed with [Pweave](https://mpastell.com/pweave/) on files with the extension `pmd`.
+If the file extension suggests preprocessing, a Pandoc/Defaults processor may run the preprocessor before invoking Pandoc on the resulting file; examples are `Rmd` files to be processed with [knitr](https://yihui.org/knitr/) or `pmd` files to be processed with [Pweave](https://mpastell.com/pweave/).
 
 
 # Design principles
@@ -159,10 +164,12 @@ If the file extension suggests preprocessing, a Pandoc/Defaults processor may ru
 
 -   Format information is added to the Markdown file itself in order to avoid complex configuration, e.g. based on file extensions or parts of the file name, or to have directories cluttered with sidecar configuration files. Note however that this system is compatible with using formats defined locally but separately, due to the way Pandoc [searches for defaults files](https://pandoc.org/MANUAL.html#option--defaults).
 
--   The YAML key under which formats are defined ends in an underscore so that it does not affect processing by Pandoc.
+-   The YAML key under which formats are defined ends in an underscore so that it is ignored by Pandoc.
 
 -   Formats are listed in a sequence of single-key mappings (the standard way to [represent an ordered mapping in YAML](https://yaml.org/type/omap.html)), because a simple YAML mapping has no defined order; this way it is possible to identify a "first" format.
 
 -   Output file extensions are used as keys because it does not make sense to create more than one file with the same name.
 
 -   Pandoc is to be run in the directory of the input file so that local external resources (images, defaults files) are found.
+
+

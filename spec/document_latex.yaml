@@ -19,4 +19,6 @@ variables:
     - pdfpagemode=UseNone
   colorlinks: true
   link-citations: true
+  header-includes:
+    \AtBeginEnvironment{longtable}{\footnotesize}
 citeproc: true
