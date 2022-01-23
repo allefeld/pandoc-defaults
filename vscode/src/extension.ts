@@ -282,6 +282,10 @@ function processAll(document: vscode.TextDocument): void {
 	process(document, []);
 }
 
+function clean(document: vscode.TextDocument): void {
+	process(document, ['--clean']);
+}
+
 
 // --- de- / activation -------------------------------------------------------
 
@@ -303,6 +307,10 @@ export function activate(context: vscode.ExtensionContext): void {
 	disposable = vscode.commands.registerTextEditorCommand(
 		'pandocDefaults.processAll',
 		(editor, edit) => processAll(editor.document));
+	context.subscriptions.push(disposable);
+	disposable = vscode.commands.registerTextEditorCommand(
+		'pandocDefaults.clean',
+		(editor, edit) => clean(editor.document));
 	context.subscriptions.push(disposable);
 	disposable = vscode.commands.registerCommand(
 		'pandocDefaults.showTerminal', terminalShow);

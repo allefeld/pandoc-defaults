@@ -35,6 +35,11 @@
                 "category": "Pandoc/Defaults"
             },
             {
+                "command": "pandocDefaults.clean",
+                "title": "Clean",
+                "category": "Pandoc/Defaults"
+            },
+            {
                 "command": "pandocDefaults.showTerminal",
                 "title": "Show Terminal",
                 "category": "Pandoc/Defaults"
@@ -50,6 +55,11 @@
                 "key": "ctrl+alt+p",
                 "when": "editorLangId == markdown",
                 "command": "pandocDefaults.processAll"
+            },
+            {
+                "key": "shift+alt+p",
+                "when": "editorLangId == markdown",
+                "command": "pandocDefaults.clean"
             }
         ],
         "configuration":{

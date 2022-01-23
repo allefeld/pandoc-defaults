@@ -9,17 +9,22 @@ This extension makes an external Pandoc/Defaults processor available through com
 
 The extension contributes the following commands:
 
--   *Pandoc/Defaults: Process All* (`pandocDefaults.processAll`)
-    keyboard shortcut: <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>P</kbd>
+-   *Pandoc/Defaults: Process All* (`pandocDefaults.processAll`)\
+    default keyboard shortcut: <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>P</kbd>
 
     processes all formats defined in the file in the active editor
 
--   *Pandoc/Defaults: Process First* (`pandocDefaults.processFirst`)
-    keyboard shortcut: <kbd>Alt</kbd>+<kbd>P</kbd>
+-   *Pandoc/Defaults: Process First* (`pandocDefaults.processFirst`)\
+    default keyboard shortcut: <kbd>Alt</kbd>+<kbd>P</kbd>
 
     processes the first format defined in the file in the active editor
 
--   *Pandoc/Defaults: Show Terminal* (`pandocDefaults.showTerminal`)
+-   *Pandoc/Defaults: Clean* (`pandocDefaults.clean`)\
+    default keyboard shortcut: <kbd>Shift</kbd>+<kbd>Alt</kbd>+<kbd>P</kbd>
+
+    deletes files resulting from all formats defined in the file in the active editor
+
+-   *Pandoc/Defaults: Show Terminal* (`pandocDefaults.showTerminal`)\
     triggered by clicking the Pandoc/Defaults status bar item (icon ¶).
 
     shows the dedicated Pandoc/Defaults terminal
@@ -38,7 +43,7 @@ code --install-extension <path-to-vsix>
 
 ## Requirements
 
-Both [Pandoc](https://pandoc.org/installing.html) and a Pandoc/Defaults processor have to be installed separately. For the latter, see the [Python implementation](https://github.com/allefeld/pandoc-defaults/tree/main/python).
+A Pandoc/Defaults processor has to be installed separately, see the [Python implementation](https://github.com/allefeld/pandoc-defaults/tree/main/python). The processor in turn requires [Pandoc](https://pandoc.org/installing.html) to be installed.
 
 ## Notes
 
